@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
+  <display-name>Restful Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>registration.html</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>jersey-serlvet</servlet-name>
+    <servlet-class>
+			com.sun.jersey.spi.spring.container.servlet.SpringServlet
+		</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.beans.api</param-value>
+    </init-param>
+       <!-- filter -->
+      <init-param>
+      <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name> 
+     <param-value>com.beans.secure.MyFilterApp</param-value>
+
+  </init-param>   
+
+
+
+   <init-param>
+      <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name> 
+     <param-value>com.beans.secure.MyFilterApp</param-value>
+
+  </init-param> 
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <!-- filter 
+      <init-param>
+      <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name> 
+     <param-value>com.beans.secure.MyAppFilter</param-value>
+
+  </init-param>   -->
+  
+     
+  
+  
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jersey-serlvet</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+</web-app>

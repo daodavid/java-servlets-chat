@@ -25,7 +25,7 @@ public class MyFilterApp implements ContainerRequestFilter,ContainerResponseFilt
 	public ContainerResponse filter(ContainerRequest re, ContainerResponse resp) {
 		re.getPath();
 	 
-		if(re.getPath().contains("loggin")||request.getSession().getAttribute("username")!=null){
+		if(re.getPath().contains("loggin")||request.getSession().getAttribute("username")!=null ||re.getPath().contains("addUser")){
 			
 			return resp;
 		}else{
